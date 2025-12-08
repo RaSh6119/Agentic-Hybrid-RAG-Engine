@@ -1,0 +1,19 @@
+# Virtual Environments
+venv/
+.venv/
+env/
+
+# Python compiled files (auto-generated)
+__pycache__/
+*.py[cod]
+
+# Distribution / Packaging
+dist/
+build/
+*.egg-info/
+
+# Environment variables (Never commit secrets!)
+.env
+
+# System files
+.DS_Store
