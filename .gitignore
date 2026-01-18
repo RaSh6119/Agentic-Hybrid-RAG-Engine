@@ -17,3 +17,7 @@ build/
 
 # System files
 .DS_Store
+
+# Database Data
+neo4j_data/
+qdrant_data/
