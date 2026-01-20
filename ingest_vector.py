@@ -19,7 +19,7 @@ COLLECTION_NAME = "tech_ecosystem"
 def ingest_vectors():
     # --- Check for API Key ---
     if not os.getenv("OPENAI_API_KEY"):
-        print("❌ Error: OPENAI_API_KEY not found. Did you create the .env file?")
+        print("Error: OPENAI_API_KEY not found. Did you create the .env file?")
         return
 
     # --- THE FIX: Manual Collection Creation ---
@@ -50,7 +50,7 @@ def ingest_vectors():
     txt_files = glob.glob(os.path.join(DATA_PATH, "*.txt"))
     
     if not txt_files:
-        print(f"❌ No files found in {DATA_PATH}. Did you run download_data.py?")
+        print(f"No files found in {DATA_PATH}. Did you run download_data.py?")
         return
 
     for file_path in txt_files:

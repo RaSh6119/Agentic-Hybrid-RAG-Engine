@@ -91,3 +91,41 @@ def search_graph(query: str):
         
     except Exception as e:
         return f"Graph Error: {e}"
+
+def get_user_context(user_id: str):
+    """Fetches the user's role and preferences from the Graph."""
+    print(f"   [Memory] Looking up profile for: {user_id}")
+    
+    try:
+        graph = Neo4jGraph(
+            url=NEO4J_URI, 
+            username=NEO4J_USER, 
+            password=NEO4J_PASSWORD,
+            enhanced_schema=False,
+            refresh_schema=False
+        )
+        
+        # Query to get user details
+        query = f"""
+        MATCH (u:User {{id: '{user_id}'}})-[:PREFERS]->(p)
+        RETURN u.role as role, u.style as style, collect(p.name) as prefs
+        """
+        
+        data = graph.query(query)
+        
+        if not data:
+            return "User not found. Defaulting to neutral tone."
+            
+        user = data[0]
+        context_str = (
+            f"USER PROFILE:\n"
+            f"- Name: {user_id}\n"
+            f"- Role: {user['role']}\n"
+            f"- Preferred Style: {user['style']}\n"
+            f"- Key Interests: {', '.join(user['prefs'])}\n"
+            f"INSTRUCTION: Tailor the answer specifically for a {user['role']}."
+        )
+        return context_str
+        
+    except Exception as e:
+        return f"Memory Error: {e}"
