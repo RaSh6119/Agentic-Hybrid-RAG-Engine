@@ -104,7 +104,7 @@ streamlit run app.py
 │   ├── router.py          # Semantic Router logic
 │   └── retriever.py       # Graph and Vector search tools
 ├── data/
-│   └── financial_reports/ # Source documents
+│   └── Company data and reports/ # Source documents
 └── .env                   # Environment variables (GitIgnored)
 ```
 
