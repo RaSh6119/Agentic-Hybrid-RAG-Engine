@@ -23,7 +23,7 @@ def ingest_vectors():
         return
 
     # --- THE FIX: Manual Collection Creation ---
-    print(f"🔄 Connecting to Qdrant at {QDRANT_URL}...")
+    print(f"Connecting to Qdrant at {QDRANT_URL}...")
     client = QdrantClient(url=QDRANT_URL)
     
     # 1. Reset: Delete if exists
